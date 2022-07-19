@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="facebook_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="comment">
+    <Key>
+      <PropertyRef Name="comment_id" />
+    </Key>
+    <Property Name="comment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="comment_description" Type="varchar" MaxLength="1500" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="post_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="friend_requests">
+    <Key>
+      <PropertyRef Name="user_id" />
+      <PropertyRef Name="request_id" />
+    </Key>
+    <Property Name="fr_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="request_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="friends">
+    <Key>
+      <PropertyRef Name="user_id" />
+      <PropertyRef Name="friend_id" />
+    </Key>
+    <Property Name="f_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="friend_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="likes">
+    <Key>
+      <PropertyRef Name="like_id" />
+    </Key>
+    <Property Name="like_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="likes" Type="int" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="post_id" Type="int" />
+  </EntityType>
+  <EntityType Name="post">
+    <Key>
+      <PropertyRef Name="post_id" />
+    </Key>
+    <Property Name="post_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="post_description" Type="varchar" MaxLength="1500" />
+    <Property Name="likesNumber" Type="int" />
+    <Property Name="post_state" Type="varchar" MaxLength="50" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user_profile">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mobile" Type="varchar" MaxLength="11" />
+    <Property Name="Fname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Lname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="profile_img" Type="image" />
+    <Property Name="country" Type="varchar" MaxLength="50" />
+    <Property Name="city" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__comment__post_id__30F848ED">
+    <End Role="post" Type="Self.post" Multiplicity="1" />
+    <End Role="comment" Type="Self.comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="post">
+        <PropertyRef Name="post_id" />
+      </Principal>
+      <Dependent Role="comment">
+        <PropertyRef Name="post_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__comment__user_id__300424B4">
+    <End Role="user_profile" Type="Self.user_profile" Multiplicity="1" />
+    <End Role="comment" Type="Self.comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_profile">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="comment">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__friend_re__reque__2A4B4B5E">
+    <End Role="user_profile" Type="Self.user_profile" Multiplicity="1" />
+    <End Role="friend_requests" Type="Self.friend_requests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_profile">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="friend_requests">
+        <PropertyRef Name="request_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__friend_re__user___29572725">
+    <End Role="user_profile" Type="Self.user_profile" Multiplicity="1" />
+    <End Role="friend_requests" Type="Self.friend_requests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_profile">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="friend_requests">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__friends__friend___267ABA7A">
+    <End Role="user_profile" Type="Self.user_profile" Multiplicity="1" />
+    <End Role="friends" Type="Self.friends" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_profile">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="friends">
+        <PropertyRef Name="friend_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__friends__user_id__25869641">
+    <End Role="user_profile" Type="Self.user_profile" Multiplicity="1" />
+    <End Role="friends" Type="Self.friends" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_profile">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="friends">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__likes__post_id__34C8D9D1">
+    <End Role="post" Type="Self.post" Multiplicity="0..1" />
+    <End Role="likes" Type="Self.likes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="post">
+        <PropertyRef Name="post_id" />
+      </Principal>
+      <Dependent Role="likes">
+        <PropertyRef Name="post_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__likes__user_id__33D4B598">
+    <End Role="user_profile" Type="Self.user_profile" Multiplicity="0..1" />
+    <End Role="likes" Type="Self.likes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_profile">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="likes">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__post__user_id__2D27B809">
+    <End Role="user_profile" Type="Self.user_profile" Multiplicity="1" />
+    <End Role="post" Type="Self.post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_profile">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="post">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="facebook_dbModelStoreContainer">
+    <EntitySet Name="comment" EntityType="Self.comment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="friend_requests" EntityType="Self.friend_requests" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="friends" EntityType="Self.friends" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="likes" EntityType="Self.likes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="post" EntityType="Self.post" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user_profile" EntityType="Self.user_profile" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__comment__post_id__30F848ED" Association="Self.FK__comment__post_id__30F848ED">
+      <End Role="post" EntitySet="post" />
+      <End Role="comment" EntitySet="comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__comment__user_id__300424B4" Association="Self.FK__comment__user_id__300424B4">
+      <End Role="user_profile" EntitySet="user_profile" />
+      <End Role="comment" EntitySet="comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__friend_re__reque__2A4B4B5E" Association="Self.FK__friend_re__reque__2A4B4B5E">
+      <End Role="user_profile" EntitySet="user_profile" />
+      <End Role="friend_requests" EntitySet="friend_requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK__friend_re__user___29572725" Association="Self.FK__friend_re__user___29572725">
+      <End Role="user_profile" EntitySet="user_profile" />
+      <End Role="friend_requests" EntitySet="friend_requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK__friends__friend___267ABA7A" Association="Self.FK__friends__friend___267ABA7A">
+      <End Role="user_profile" EntitySet="user_profile" />
+      <End Role="friends" EntitySet="friends" />
+    </AssociationSet>
+    <AssociationSet Name="FK__friends__user_id__25869641" Association="Self.FK__friends__user_id__25869641">
+      <End Role="user_profile" EntitySet="user_profile" />
+      <End Role="friends" EntitySet="friends" />
+    </AssociationSet>
+    <AssociationSet Name="FK__likes__post_id__34C8D9D1" Association="Self.FK__likes__post_id__34C8D9D1">
+      <End Role="post" EntitySet="post" />
+      <End Role="likes" EntitySet="likes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__likes__user_id__33D4B598" Association="Self.FK__likes__user_id__33D4B598">
+      <End Role="user_profile" EntitySet="user_profile" />
+      <End Role="likes" EntitySet="likes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__post__user_id__2D27B809" Association="Self.FK__post__user_id__2D27B809">
+      <End Role="user_profile" EntitySet="user_profile" />
+      <End Role="post" EntitySet="post" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

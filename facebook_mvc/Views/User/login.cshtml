@@ -1,0 +1,47 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="~/images/fb-icon-sm.png">
+    <link href="~/css/all.min.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Facebook</title>
+</head>
+<body>
+    <div class="login-form">
+        <div class="container grid ">
+            <div class="card flex">
+                <!-- form icon -->
+                <img class="fb-icon" src="~/images/fb-icon-lg.png" />
+
+                <!-- the form body -->
+                <form name="myForm" action="" onsubmit="" method="post">
+                    <!-- email input -->
+                    <label for="fname">Email</label><br>
+                    <input type="email" id="fname" name="email" placeholder="Email" required><br>
+                    <!-- password input -->
+                    <label for="password">Password</label><br>
+                    <input type="password" id="password" name="password" placeholder="Password" required><br><br>
+
+                    <!-- login btn -->
+                    <input class="btn btn-primary" type="submit" value="Login">
+                    <!-- sign up btn -->
+                    <a href="/User/signup" class="btn btn-outline-primary">Sign up</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src=" js/main.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
+</body>
+</html>

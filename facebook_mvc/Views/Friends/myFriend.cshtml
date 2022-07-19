@@ -1,0 +1,134 @@
+﻿@model facebook_mvc.View_Models.addpost
+
+@{
+    Layout = "~/Views/Shared/_Navbar.cshtml";
+}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="~/images/fb-icon-sm.png">
+
+    <link rel="stylesheet" href="~/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/bootstrap.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="~/css/style.css">
+    <title>Facebook</title>
+</head>
+
+<body>
+
+    <!-- ----------------------profile info section---------------- -->
+    <div class="card">
+        <div class="container">
+            <div class="profile-info">
+                <div class="container  flex ">
+                    <div class="flex">
+                        <!-- profile img -->
+                        <img id="account-img" src="@Url.Content(Model.user.profile_img)" alt="" class="img">
+                        <!-- user info -->
+                        <div class="user-info">
+                            <h2 id="account-name" class="user-name">@Model.user.Fname @Model.user.Lname</h2>
+                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ----------------------news feed section---------------- -->
+
+    <div class="container posts-container">
+        @{foreach (var item in Model.user.posts)
+            {
+                if (item.post_state == "puplic")
+                {
+                <!-- post card -->
+        <div id="account-post" class="post card my-3">
+            <div id="account-info" class="user-info flex">
+                <img id="account-img" src="@Url.Content(Model.user.profile_img)" alt="" class="img">
+                <h5 class="account-name">@Model.user.Fname @Model.user.Lname</h5>
+            </div>
+            <hr>
+            <!-- post text -->
+            <p id="post-text" style="font-size: 20px;" class="my-2">
+                @item.post_description
+            </p>
+            <!-- post main img -->
+            @*<img id="post-img" class="" src="~/images/post-img-demo.jpg" alt="">*@
+            <!-- likes count -->
+            <p class="likes-count my-2"><span id="likes-count">@item.likesNumber</span> like this post</p>
+            <hr>
+            <!-- like and comment btns -->
+            <div class="post-interact flex">
+                <!-- like btn -->
+                <div id="like-btn" class="like">
+                    <a href="@Url.Action("Like", "React", new { post_id = item.post_id })" class="btn btn-primary">
+                        <i class="fa fa-thumbs-up" style="font-size:30px"></i>
+                        like
+                    </a>
+                </div>
+                <!-- comment btn -->
+                <div id="dislike-btn" class="like">
+                    <a href="@Url.Action("Dislike", "React", new { post_id = item.post_id })" class="btn btn-primary">
+
+                        <i class="fa fa-thumbs-down"
+                           style="font-size:29px"></i>
+                        Dislike
+                    </a>
+                </div>
+            </div>
+
+            <hr>
+            <a href="@Url.Action("single_post", "Profile", new { post_id = item.post_id })" class="btn btn-primary">
+                Add Comment
+            </a>
+            <br>
+            <br>
+            @foreach (var i in item.comments)
+
+            {<div id="view-comments" class="view-comments">
+                 <div class="flex comment">
+                     @*<img id="account-img"class="rounded-circle" src="@Url.Content(item.user_profile.profile_img)" alt="">*@
+                                          <div class="comment-body">
+
+                         <p id="comment-text">
+                             @i.comment_description
+                         </p>
+                     </div>
+                 </div>
+                </div>
+            }
+
+
+        </div>}
+                }
+            }
+        </div>
+
+    <!-- Button trigger modal -->
+    <!-- Modal -->
+
+    <button class="btn btn-primary" onclick="topFunction()" id="topBtn" title="Go to top">
+        <i class='fas fa-angle-up'
+           style='font-size:24px'></i>
+    </button>
+
+    <script src="js/bootstrap.bundle.js"></script>
+
+    <script src=" js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="facebook_dbModelStoreContainer" CdmEntityContainer="facebook_dbEntities1">
+    <EntitySetMapping Name="comments">
+      <EntityTypeMapping TypeName="facebook_dbModel.comment">
+        <MappingFragment StoreEntitySet="comment">
+          <ScalarProperty Name="comment_id" ColumnName="comment_id" />
+          <ScalarProperty Name="comment_description" ColumnName="comment_description" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="post_id" ColumnName="post_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="friend_requests">
+      <EntityTypeMapping TypeName="facebook_dbModel.friend_requests">
+        <MappingFragment StoreEntitySet="friend_requests">
+          <ScalarProperty Name="fr_id" ColumnName="fr_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="request_id" ColumnName="request_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="friends">
+      <EntityTypeMapping TypeName="facebook_dbModel.friend">
+        <MappingFragment StoreEntitySet="friends">
+          <ScalarProperty Name="f_id" ColumnName="f_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="friend_id" ColumnName="friend_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="likes">
+      <EntityTypeMapping TypeName="facebook_dbModel.like">
+        <MappingFragment StoreEntitySet="likes">
+          <ScalarProperty Name="like_id" ColumnName="like_id" />
+          <ScalarProperty Name="likes" ColumnName="likes" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="post_id" ColumnName="post_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="posts">
+      <EntityTypeMapping TypeName="facebook_dbModel.post">
+        <MappingFragment StoreEntitySet="post">
+          <ScalarProperty Name="post_id" ColumnName="post_id" />
+          <ScalarProperty Name="post_description" ColumnName="post_description" />
+          <ScalarProperty Name="likesNumber" ColumnName="likesNumber" />
+          <ScalarProperty Name="post_state" ColumnName="post_state" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user_profile">
+      <EntityTypeMapping TypeName="facebook_dbModel.user_profile">
+        <MappingFragment StoreEntitySet="user_profile">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="Fname" ColumnName="Fname" />
+          <ScalarProperty Name="Lname" ColumnName="Lname" />
+          <ScalarProperty Name="profile_img" ColumnName="profile_img" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

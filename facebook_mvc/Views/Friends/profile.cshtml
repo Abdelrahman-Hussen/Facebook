@@ -1,0 +1,72 @@
+﻿@model IList<facebook_mvc.Models.friend>
+
+@{
+    Layout = "~/Views/Shared/_Navbar.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/fb-icon-sm.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <s>
+        <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    </s>
+    <link rel="icon" href="~/images/fb-icon-sm.png">
+    <link rel="stylesheet" href="~/css/style.css">
+    <title>Facebook</title>
+</head>
+<body>
+    <!-- the main body container of both Request&Suggestion used bootstrap so some classs make no sence
+        what we need is the container with the class friend-request & friend-suggestion -->
+    <div class="container card my-5">
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <!--Friend Request tab  -->
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="requests-tab" data-bs-toggle="tab" data-bs-target="#requests"
+                        type="button" role="tab" aria-controls="home" aria-selected="true">
+                    Friends
+                </button>
+            </li>
+            
+        </ul>
+        <!-- tabs content -->
+
+        <div class="tab-content" id="myTabContent">
+            <!-- friend request container start  -->
+            @{ foreach (var item in Model)
+                {
+                    <div class="tab-pane fade show active" id="requests" role="tabpanel" aria-labelledby="requests-tab">
+                        <!-- friend request -->
+                        <div id="friend-request" class="friend-request  py-3">
+                            <a id="friend-request-profile" href="@Url.Action("myFriend", "Friends", new { friend_id = item.user_profile.user_id })" class="account-data flex">
+                                <!-- account img -->
+                                
+                                <img id="account-img " class="account-img rounded-circle" src="@Url.Content(item.user_profile1.profile_img)" alt="" class="img">
+                                <!-- account name -->
+                                <h2 id="account-name" class="account-name">@item.user_profile1.Fname @item.user_profile1.Lname</h2>
+                            </a>
+                            <!-- sdd friend btn -->
+                            <div class="view-friend">
+                                <a href="@Url.Action("myFriend", "Friends", new { friend_id = item.user_profile1.user_id })" class="btn btn-outline-primary">View Profile</a>
+                            </div>
+                            
+                        </div>
+                    </div>}}
+            
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+

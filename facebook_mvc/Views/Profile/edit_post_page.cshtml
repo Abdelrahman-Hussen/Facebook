@@ -1,0 +1,27 @@
+﻿@model facebook_mvc.Models.post
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Post Privacy</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("editpost", "Profile", FormMethod.Post))
+                {
+                    @Html.HiddenFor(Model => Model.post_id)
+
+                    <input type="radio" id="html" name="post_state" value="private">
+                    <label for="html">Private</label><br>
+                    <input type="radio" id="public" name="post_state" value="public">
+                    <label for="public">Public</label><br><br>
+                    <input class="btn btn-primary" type="submit" value="Submit">
+
+                }
+                
+
+            </div>
+        </div>
+    </div>
+
+

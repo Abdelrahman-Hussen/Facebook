@@ -1,0 +1,38 @@
+﻿@model IEnumerable<facebook_mvc.Models.user_profile>
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Navbar.cshtml";
+}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/fb-icon-sm.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <s>
+        <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    </s>
+    <link rel="icon" href="~/images/fb-icon-sm.png">
+    <link rel="stylesheet" href="~/css/style.css">
+    <title>Facebook</title>
+
+</head>
+<body>
+    <div class="container show-search grid my-5 p-3" style="height : 400px ;
+            width  : 400px;">
+        <!-- the account card view  -->
+        @foreach (var item in Model)
+        {
+            <div class="card m-2  search-result">
+                <img id="account-img" src="@Url.Content(item.profile_img)" alt="" class="img">
+                <br>
+                <h3 class="account-name" style="position : center"> @item.Fname @item.Lname </h3>
+                <br>
+                <a href="@Url.Action("addfriend", "Home", new { id = item.user_id })" id="add-friend" class="btn btn-success">
+                    Add Friend
+                </a>
+            </div>
+        }
+    </div>
+</body>

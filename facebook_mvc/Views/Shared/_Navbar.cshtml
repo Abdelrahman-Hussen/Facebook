@@ -1,0 +1,54 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="~/images/fb-icon-sm.png">
+    <link href="~/css/all.min.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Facebook</title>
+</head>
+<body>
+    <!-- ----------------------navbar---------------- -->
+    <nav>
+        <div class=" container flex">
+            <a href="/home/home"><img src="~/images/fb-icon-md.png" /></a>
+            <div class="search">
+                @using (Html.BeginForm("Search", "Home", FormMethod.Get))
+                {
+                    @Html.TextBox("searching", null, new { @id = "site-search", @name = "q", @placeholder = "search", @type = "search" }) <input class="btn btn-primary" type="submit" value="Search">
+                }
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2"
+                        data-bs-toggle="dropdown" aria-expanded="false"></button>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                    <li><a class="dropdown-item " href="/Profile/Index">Profile</a></li>
+                    <li><a class="dropdown-item" href="/User/Edit">Edit Profile</a></li>
+                    <li><a class="dropdown-item" href="/Friends/profile">Friends</a></li>
+                    <li><a class="dropdown-item" href="/Friends/friend_requst">Friends Requests</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="/User/login">Sign out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    @RenderBody()
+
+    <button class="btn btn-primary" onclick="topFunction()" id="topBtn" title="Go to top">
+        <i class='fas fa-angle-up'
+           style='font-size:24px'></i>
+    </button>
+    <script src="~/js/bootstrap.bundle.js"></script>
+    <script src="~/js/main.js"></script>
+</body>
+</html>

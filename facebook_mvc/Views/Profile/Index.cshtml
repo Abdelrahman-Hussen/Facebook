@@ -1,0 +1,154 @@
+﻿
+
+@model facebook_mvc.View_Models.addpost
+
+@{
+    Layout = "~/Views/Shared/_Navbar.cshtml";
+}
+
+<div id="user-info-container" class="card">
+    <div class=" container">
+        <div id="user-info" class="profile-info flex ">
+            <!-- user info -->
+            <div id="user-details" class="flex">
+                <!-- profile img -->
+                
+                <img id="account-img" src="@Url.Content(Model.user.profile_img)" alt="" class="img" class="rounded-circle" >
+
+                <!-- user name&Friends count -->
+                <div class="user-info">
+                    <h2 class="user-name">@Model.user.Fname @Model.user.Lname</h2>
+                    
+                </div>
+            </div>
+            <!-- edit profilr btn -->
+            <div id="edit-btn" class="go-edit">
+                <a class="btn btn-dark" href="@Url.Action("Edit", "user", new { id = @Model.user.user_id })">Edit profile</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ----------------------add post section---------------- -->
+<div class="container ">
+    <div class="card my-3 " style="max-width: 600px ;margin: 0 auto">
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPost">
+            Create Post
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="addPost" tabindex="-1" aria-labelledby="addPostLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addPostLabel">Add Post</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        @using (Html.BeginForm("addpost", "Profile", FormMethod.Post))
+
+                        {<div class="mb-3">
+                            <input type="text" class="form-control" name="post_description" placeholder="What's on your mind">
+                        </div>
+                        
+ 
+                        <button type="submit" class="btn btn-primary">post</button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ----------------------news feed section---------------- -->
+<div class="news-feed">
+    <div class="container">
+        <!-- post card -->
+        @{foreach (var item in Model.user.posts)
+            {
+        <div id="user-post" class="post card my-3">
+            <div class="user-info flex">
+                <div class="flex user-post-info">
+                    <img id="account-img" src="@Url.Content(item.user_profile.profile_img)" alt="" class="img">
+                    <h5 id="user-name" class="user-name"> @item.user_profile.Fname @item.user_profile.Lname </h5>
+                </div>
+                <div class="edit-post-privacy">
+                    <a href="@Url.Action("edit_post_page", "Profile", new { post_id = item.post_id })" class="btn btn-primary" >
+                        Edit
+                    </a>
+                </div>
+            </div>
+            <hr>
+            <!-- post text -->
+
+            <p id="post-text" style="font-size: 20px;" class="my-2">
+                @item.post_description
+
+            </p>
+            <p class="likes-count my-2">
+                <span id="likes-count">
+                    @item.likesNumber
+                </span> like this post
+            </p>
+
+
+
+            <!-- post main img -->
+            <!--<img id="post-img" src="~/images/meme.png" />-->
+            <!-- likes count -->
+
+            <hr>
+            <!-- like and comment btns -->
+            <div class="post-interact flex">
+                <!-- like btn -->
+                <div id="like-btn" class="like">
+                    <a href="@Url.Action("Like", "React", new { post_id = item.post_id })" class="btn btn-primary">
+                        <i class="fa fa-thumbs-up" style="font-size:30px"></i> 
+                        like
+                    </a>
+                </div>
+                <!-- comment btn -->
+                <div id="dislike-btn" class="like">
+                    <a href="@Url.Action("Dislike", "React", new { post_id = item.post_id })" class="btn btn-primary">
+                    
+                        <i class="fa fa-thumbs-down"
+                           style="font-size:29px"></i>
+                        Dislike
+                   </a>
+                </div>
+            </div>
+            <hr>
+            <br>
+            <a href="@Url.Action("single_post", "Profile", new { post_id = item.post_id })" class="btn btn-primary" >
+                Add Comment
+            </a>
+            <br>
+
+            @foreach (var i in item.comments)
+
+            {<div id="view-comments" class="view-comments">
+                    <div class="flex comment">
+                        <img id="account-img" class="rounded-circle" src="~/images/fb-profilr-placeholder.jpeg" alt="">
+                        <div class="comment-body">
+
+                            <p id="comment-text">
+                                @i.comment_description
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+
+            }
+         }
+
+ </div>
+    <!-- ------------------------------------------- -->
+
+
+
+
+
+

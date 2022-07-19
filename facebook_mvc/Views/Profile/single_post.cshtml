@@ -1,0 +1,74 @@
+﻿@model facebook_mvc.Models.post
+
+@{
+    ViewBag.Title = "single_post";
+}
+
+<div id="user-post" class="post card my-3">
+    <div class="user-info flex">
+        <div class="flex user-post-info">
+            <img id="account-img" src="@Url.Content(Model.user_profile.profile_img)" alt="" class="img">
+            <h5 id="user-name" class="user-name">@Model.user_profile.Fname @Model.user_profile.Lname</h5>
+        </div>
+        <div class="edit-post-privacy">
+            <a href="/Profile/editpost" class="btn btn-primary" data-bs-toggle="modal"
+               data-bs-target="#exampleModal">
+                edit
+            </a>
+        </div>
+    </div>
+    <hr>
+    <!-- post text -->
+
+    <p id="post-text" style="font-size: 20px;" class="my-2">
+        @Model.post_description
+
+    </p>
+    <p class="likes-count my-2">
+        <span id="likes-count">
+            @Model.likesNumber
+        </span> like this post
+    </p>
+
+
+
+    <!-- post main img -->
+    
+    <!-- likes count -->
+
+    <hr>
+    <!-- like and comment btns -->
+    <div class="post-interact flex">
+        <!-- like btn -->
+        <div id="like-btn" class="like">
+            <button class="btn btn-primary" href="">
+                <i class="fa fa-thumbs-up" style="font-size:30px"></i> like
+            </button>
+        </div>
+        <!-- comment btn -->
+        <div id="dislike-btn" class="like">
+            <button class="btn btn-primary">
+                <i class="fa fa-thumbs-down"
+                   style="font-size:29px"></i>
+                Dislike
+            </button>
+        </div>
+    </div>
+    <hr>
+    <div id="add-comment" class="add-comment">
+        @using (Html.BeginForm("addcomment", "Profile", FormMethod.Post))
+        {
+            @Html.HiddenFor(Model =>Model.post_id)
+             @*<img id="account-img" src="@Url.Content(Model.user_profile.profile_img)" alt="" class="img">*@
+            <input id="" style="border-radius: 40px;width: 70%;" type="text" name="comment_description"
+                   placeholder="Add Comment">
+            <input id="submit-comment" class="btn btn-outline-primary" type="submit"  value="Post">
+
+
+        }
+    </div>
+    <br>
+
+
+        
+</div>

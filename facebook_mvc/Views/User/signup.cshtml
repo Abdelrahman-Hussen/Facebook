@@ -1,0 +1,67 @@
+﻿@model facebook_mvc.Models.user_profile
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="~/images/fb-icon-sm.png">
+    <link href="~/css/all.min.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Facebook</title>
+</head>
+<body>
+    <div class="login-form">
+        <div class="container grid ">
+            <div class="card flex">
+                <!-- form icon -->
+                <img class="fb-icon" src="~/images/fb-icon-lg.png" />
+
+                <!-- ----------------------Form body---------------- -->
+                @using (Html.BeginForm("signup", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @*@Html.HiddenFor(Model => Model.user_id)*@
+                    <!-- ----------------------First name input---------------- -->
+                    <label for="fname-sign">First Name</label><br>
+                    <input type="text" id="fname-sign" name="fname" placeholder="First name" required><br>
+                    <!-- ---------------------- last name input---------------- -->
+                    <label for="lname-sign">Last name</label><br>
+                    <input type="text" id="lname-sign" name="lname" placeholder="Last name" required><br>
+                    <!-- ----------------------Email input---------------- -->
+                    <label for="email-sign">Email</label><br>
+                    <input type="email" id="email" name="email" placeholder="Email" required><br>
+                    <!-- ----------------------password input---------------- -->
+                    <label for="password-sign">Password</label><br>
+                    <input type="password" id="password-sign" name="pass" placeholder="Password" required>
+
+                    <div class="mb-3">
+                        <img class="change-pic" src="images/demo-profile-img.jpg" alt="">
+                        <br>
+                        <input type="file" id="file" name="ImageFile" accept="image/*">
+
+                        @*@Html.LabelFor(model => model.profile_img, htmlAttributes: new { @class = "control-label col-md-2", @style = "font-size:36px" })*@
+
+                    </div>
+                    <br><br>
+                    <!-- Sign UP btn  -->
+                    <input class="btn btn-primary" type="submit" value="Sign UP">
+                    <!-- login btn  -->
+                    <a href="/User/login" class="btn btn-outline-primary ">Login</a>
+                }
+
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src=" js/main.js"></script>
+</body>
+</html>
+

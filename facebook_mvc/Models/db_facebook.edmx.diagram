@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c3737363e786446eb9a8f1071624b16a" Name="Diagram1">
+        <EntityTypeShape EntityType="db_facebookModel.comment" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_facebookModel.friend_requests" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_facebookModel.friend" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_facebookModel.like" Width="1.5" PointX="5.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_facebookModel.post" Width="1.5" PointX="3" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_facebookModel.user_profile" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <AssociationConnector Association="db_facebookModel.FK__comment__post_id__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="db_facebookModel.FK__comment__user_id__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="db_facebookModel.FK__friend_re__reque__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="db_facebookModel.FK__friend_re__user___29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="db_facebookModel.FK__friends__friend___267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="db_facebookModel.FK__friends__user_id__25869641" ManuallyRouted="false" />
+        <AssociationConnector Association="db_facebookModel.FK__likes__post_id__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="db_facebookModel.FK__likes__user_id__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="db_facebookModel.FK__post__user_id__2D27B809" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
